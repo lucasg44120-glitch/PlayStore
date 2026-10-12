@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Play Store</title>
+<style>
+:root{--bg:#fff;--sf:#f0f4f9;--sf2:#e9eef6;--on:#1f1f1f;--on2:#444746;--pr:#0b57d0;--onpr:#fff;--prc:#d3e3fd;--onprc:#041e49;--ln:#c4c7c5;--ok:#146c2e;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131314;--sf:#1e1f20;--sf2:#282a2c;--on:#e3e3e3;--on2:#c4c7c5;--pr:#a8c7fa;--onpr:#062e6f;--prc:#0842a0;--onprc:#d3e3fd;--ln:#444746}}
+:root[data-theme="dark"]{--bg:#131314;--sf:#1e1f20;--sf2:#282a2c;--on:#e3e3e3;--on2:#c4c7c5;--pr:#a8c7fa;--onpr:#062e6f;--prc:#0842a0;--onprc:#d3e3fd;--ln:#444746}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{height:100%;margin:0}
+body{background:#0d0d0f;color:var(--on);font:400 16px/1.4 "Google Sans Flex","Google Sans","Product Sans","Roboto",system-ui,sans-serif;display:grid;place-items:center}
+button,input,textarea,select{font:inherit;color:inherit}
+.phone{position:relative;width:100%;height:100%;background:var(--bg);overflow:hidden;display:flex;flex-direction:column}
+@media(min-width:700px){.sb{display:none}.main>*{max-width:960px;margin-left:auto;margin-right:auto}.nav{justify-content:center}.nav button{max-width:140px}}
+.sb{height:36px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:6px 26px 0;font-size:14px;font-weight:500;position:relative;z-index:3}
+.sb .cam{position:absolute;left:50%;top:10px;width:14px;height:14px;background:#000;border-radius:50%;transform:translateX(-50%)}
+.sb .r{display:flex;gap:6px;align-items:center}
+.sb svg{width:16px;height:16px;fill:var(--on)}
+.main{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding-bottom:20px}
+.main::-webkit-scrollbar{display:none}
+.top{display:flex;align-items:center;gap:8px;margin:6px 16px 8px;background:var(--sf2);border-radius:999px;height:56px;padding:0 8px 0 18px}
+.top input{flex:1;border:0;background:none;outline:0;min-width:0;font-size:16px}
+.top input::placeholder{color:var(--on2)}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--pr);color:var(--onpr);border:0;font-weight:600;cursor:pointer;flex:none}
+.tabs{display:flex;padding:0 8px;border-bottom:1px solid var(--sf2);position:sticky;top:0;background:var(--bg);z-index:2}
+.tabs button{flex:1;border:0;background:none;padding:14px 4px;color:var(--on2);font-weight:500;position:relative;cursor:pointer;font-size:14px}
+.tabs button.on{color:var(--pr)}
+.tabs button.on:after{content:"";position:absolute;left:20%;right:20%;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--pr)}
+h2{font-size:20px;font-weight:500;margin:22px 16px 10px;display:flex;justify-content:space-between;align-items:center}
+h2 svg{width:24px;height:24px;fill:var(--on2)}
+.car{display:flex;gap:14px;overflow-x:auto;padding:0 16px 4px;scrollbar-width:none}.car::-webkit-scrollbar{display:none}
+.tile{flex:none;width:100px;border:0;background:none;text-align:left;padding:0;cursor:pointer}
+.tile .ico{width:100px;height:100px;border-radius:26px;font-size:42px}
+.tile .t{font-size:13px;margin-top:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.tile .s{font-size:12px;color:var(--on2)}
+.banner{margin:12px 16px;border-radius:28px;padding:22px;background:linear-gradient(135deg,var(--prc),var(--sf2));color:var(--onprc)}
+.banner h1{font-size:28px;line-height:1.15;margin:0 0 6px;font-weight:500}.banner p{margin:0;font-size:14px;opacity:.85}
+.ico{width:56px;height:56px;border-radius:16px;background:var(--prc);flex:none;display:grid;place-items:center;font-size:24px;font-weight:600;color:var(--onprc);overflow:hidden}
+.ico img{width:100%;height:100%;object-fit:cover}
+.rowi{display:flex;gap:14px;align-items:center;padding:8px 16px;cursor:pointer;position:relative}
+.rowi:active,.tile:active .ico,.btn:active{filter:brightness(.92)}
+.rowi .m{flex:1;min-width:0}.rowi .t{font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rowi .s{font-size:13px;color:var(--on2)}
+.pill{border:1px solid var(--ln);background:none;color:var(--pr);border-radius:999px;padding:8px 18px;font-weight:500;font-size:14px;cursor:pointer}
+.btn{border:0;border-radius:999px;padding:12px 24px;background:var(--pr);color:var(--onpr);font-weight:500;cursor:pointer;font-size:15px}
+.btn.tonal{background:var(--prc);color:var(--onprc)}.btn.out{background:none;border:1px solid var(--ln);color:var(--pr)}.btn.red{background:#b3261e;color:#fff}.btn:disabled{opacity:.6}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px}
+.cat{border:0;background:var(--sf);border-radius:24px;padding:22px 16px;text-align:left;font-weight:500;cursor:pointer;font-size:16px}
+.nav{flex:none;display:flex;background:var(--sf);padding:10px 8px 6px}
+.nav button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:500;color:var(--on2);cursor:pointer}
+.nav .p{width:64px;height:32px;border-radius:16px;display:grid;place-items:center;transition:background .2s}
+.nav svg{width:24px;height:24px;fill:var(--on2)}
+.nav button.on{color:var(--on)}.nav button.on .p{background:var(--prc)}.nav button.on svg{fill:var(--onprc)}
+.gest{flex:none;height:22px;background:var(--sf);display:grid;place-items:center}.gest i{width:108px;height:4px;border-radius:4px;background:var(--on)}
+.back{border:0;background:none;width:48px;height:48px;border-radius:50%;cursor:pointer;margin:4px 4px 0}.back svg{width:24px;height:24px;fill:var(--on)}
+.dh{display:flex;gap:16px;padding:0 16px;align-items:center}.dh .ico{width:72px;height:72px;border-radius:20px;font-size:32px}
+.dh h1{margin:0;font-size:22px;font-weight:500;line-height:1.2}.dh .dv{color:var(--pr);font-size:14px;font-weight:500}
+.stats{display:flex;margin:20px 16px 4px}.stats div{flex:1;text-align:center;border-right:1px solid var(--ln);padding:2px 4px}.stats div:last-child{border:0}
+.stats b{display:block;font-size:14px;font-weight:500}.stats span{font-size:12px;color:var(--on2)}
+.act{padding:16px}.act .btn{width:100%;padding:14px}input[type=file]{width:100%;padding:12px;border:1px dashed var(--ln);border-radius:16px;background:var(--sf);font-size:13px}.bar{display:none;height:4px;background:var(--sf2);border-radius:4px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:var(--pr);width:0;transition:width .15s}
+.shots{display:flex;gap:8px;overflow-x:auto;padding:0 16px;scrollbar-width:none}.shots img{height:240px;border-radius:16px;flex:none}
+.about{padding:0 16px;color:var(--on2);font-size:14px;white-space:pre-wrap}
+.empty{text-align:center;color:var(--on2);padding:50px 20px}
+.fab{position:absolute;right:16px;bottom:100px;border:0;background:var(--prc);color:var(--onprc);border-radius:20px;height:56px;padding:0 20px;font-weight:500;display:flex;gap:8px;align-items:center;cursor:pointer;box-shadow:0 4px 12px #0004;z-index:4}
+.fab svg{width:24px;height:24px;fill:currentColor}
+.sheet{position:absolute;inset:0;background:#0007;display:flex;align-items:flex-end;z-index:10}
+.sheet>div{background:var(--bg);width:100%;max-height:92%;overflow:auto;border-radius:28px 28px 0 0;padding:12px 20px 24px}
+.sheet .hd{width:32px;height:4px;border-radius:4px;background:var(--ln);margin:0 auto 14px}
+.sheet h2{margin:0 0 6px}
+label{display:block;font-size:12px;color:var(--on2);margin:14px 4px 4px}
+.in{width:100%;border:0;border-bottom:2px solid var(--on2);background:var(--sf2);border-radius:12px 12px 0 0;padding:14px;outline:0}
+.in:focus{border-color:var(--pr)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.toast{position:absolute;bottom:110px;left:16px;right:16px;background:var(--on);color:var(--bg);padding:14px 18px;border-radius:12px;z-index:20;font-size:14px}
+</style>
+</head>
+<body>
+<div class="phone">
+<div class="sb"><span id="clk">12:00</span><i class="cam"></i><span class="r"><svg viewBox="0 0 24 24"><path d="M12 21 .6 8.3A17 17 0 0 1 12 4c4.3 0 8.3 1.6 11.4 4.3z"/></svg><svg viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg><svg viewBox="0 0 24 24"><path d="M15.7 4H14V2h-4v2H8.3C7.6 4 7 4.6 7 5.3v15.4c0 .7.6 1.3 1.3 1.3h7.4c.7 0 1.3-.6 1.3-1.3V5.3c0-.7-.6-1.3-1.3-1.3z"/></svg></span></div>
+<div class="main" id="app"></div>
+<div class="nav" id="nav"></div>
+<div class="gest"><i></i></div>
+</div>
+<script>
+const CATS=["Tout","Jeux","Outils","Social","Médias","Productivité"];
+let apps=[],tab="home",cat="Tout",q="",view=null,admin=false,installed={},edit=null;
+const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+installed=lsGet("installed",{});
+const api=(m,u,b)=>fetch(u,{method:m,headers:{"X-Requested-With":"XMLHttpRequest",...(b?{"Content-Type":"application/json"}:{})},body:b?JSON.stringify(b):undefined}).then(async r=>{const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"Erreur");return j});
+async function load(){apps=await api("GET","/api/apps");render()}
+const icon=a=>`<div class="ico">${a.icon?`<img src="${a.icon}" alt="">`:esc((a.name||"?")[0].toUpperCase())}</div>`;
+// ---- rendu ----
+const P={games:"M21 6H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1zM11 13H9v2H7v-2H5v-2h2V9h2v2h2zm4.5 2a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z",apps:"M4 8h4V4H4zm6 12h4v-4h-4zm-6 0h4v-4H4zm0-6h4v-4H4zm6 0h4v-4h-4zm6-10v4h4V4zm-6 4h4V4h-4zm6 6h4v-4h-4zm0 6h4v-4h-4z",lib:"M20 6h-8l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z",adm:"M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 14.9c-2.5-.9-4.5-3-5.5-5.4 1-1.6 3.4-2.5 5.5-2.5s4.5.9 5.5 2.5c-1 2.4-3 4.5-5.5 5.4z",srch:"M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z",arr:"M12 4l-1.4 1.4 5.6 5.6H4v2h12.2l-5.6 5.6L12 20l8-8z",bk:"M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z",add:"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"};
+const ic=k=>`<svg viewBox="0 0 24 24"><path d="${P[k]}"/></svg>`;
+let sub="foryou";
+function tick(){const d=new Date();$("#clk").textContent=d.getHours()+":"+String(d.getMinutes()).padStart(2,"0")}tick();setInterval(tick,20000);
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.querySelector(".phone").append(t);setTimeout(()=>t.remove(),2200)}
+function render(){
+  const g=tab==="home"&&cat==="Jeux"&&!view,h=tab==="home"&&cat!=="Jeux"&&!view;
+  $("#nav").innerHTML=[["g","games","Jeux",g],["h","apps","Applis",h],["l","lib","Mes apps",tab==="lib"&&!view],...(admin?[["a","adm","Admin",tab==="admin"&&!view]]:[])].map(([k,i,l,on])=>`<button class="${on?"on":""}" onclick="navTo('${k}')"><span class="p">${ic(i)}</span>${l}</button>`).join("");
+  const el=$("#app"),st=el.scrollTop;
+  if(view){const a=apps.find(x=>x.id===view);if(!a){view=null;return render()}return el.innerHTML=detail(a)}
+  el.innerHTML=tab==="home"?home():tab==="lib"?lib():admin?adminPanel():login();
+}
+function navTo(k){view=null;q="";if(k==="g"){tab="home";cat="Jeux"}else if(k==="h"){tab="home";if(cat==="Jeux")cat="Tout"}else tab=k==="l"?"lib":"admin";render();$("#app").scrollTop=0}
+function go(t){tab=t;view=null;render()}
+function open_(id){view=id;render();$("#app").scrollTop=0}
+const rowH=a=>`<div class="rowi" onclick="open_('${a.id}')">${icon(a)}<div class="m"><div class="t">${esc(a.name)}</div><div class="s">${esc(a.cat||"")}${a.size?" · "+esc(a.size):""}${installed[a.id]?" · Installée":""}</div></div><button class="pill" onclick="event.stopPropagation();open_('${a.id}')">${installed[a.id]?"Ouvrir":"Installer"}</button></div>`;
+const tileH=a=>`<button class="tile" onclick="open_('${a.id}')">${icon(a)}<div class="t">${esc(a.name)}</div><div class="s">${esc(a.cat||"")}</div></button>`;
+function home(){
+  const f=a=>(cat==="Tout"||a.cat===cat)&&(a.name+(a.desc||"")).toLowerCase().includes(q.toLowerCase());
+  const list=apps.filter(f);
+  let body;
+  if(sub==="cats"&&!q)body=`<div class="cats">${CATS.slice(1).map(c=>`<button class="cat" onclick="cat='${c}';sub='foryou';render()">${c}</button>`).join("")}</div>`;
+  else if(!list.length)body=`<div class="empty">Aucune appli pour le moment.<br>L'admin peut en ajouter dans l'onglet Admin.</div>`;
+  else if(sub==="new"||q)body=`<h2>${q?"Résultats":"Nouveautés"}</h2>${list.map(rowH).join("")}`;
+  else body=`${cat==="Tout"?`<div class="banner"><h1>Découvrez de nouvelles applis</h1><p>${apps.length} appli${apps.length>1?"s":""} pour votre PC</p></div>`:""}
+  <h2>${cat==="Tout"?"Suggestions pour vous":cat}${ic("arr")}</h2><div class="car">${list.slice(0,10).map(tileH).join("")}</div>
+  <h2>Applis populaires${ic("arr")}</h2>${list.map(rowH).join("")}`;
+  return `<div class="top">${ic("srch").replace("<svg",'<svg style="width:24px;height:24px;fill:var(--on2)"')}<input id="si" placeholder="Rechercher des applis" value="${esc(q)}" oninput="q=this.value;clearTimeout(window._t);window._t=setTimeout(()=>{render();const i=$('#si');i.focus();i.setSelectionRange(q.length,q.length)},250)"><button class="avatar" onclick="go('admin')">${admin?"A":"•"}</button></div>
+  <div class="tabs">${[["foryou","Pour vous"],["new","Nouveautés"],["cats","Catégories"]].map(([k,l])=>`<button class="${sub===k?"on":""}" onclick="sub='${k}';render()">${l}</button>`).join("")}</div>${body}`
+}
+function lib(){const l=apps.filter(a=>installed[a.id]);return `<h2 style="margin-top:20px">Mes applis</h2>${l.length?l.map(rowH).join(""):`<div class="empty">Aucune appli installée.</div>`}`}
+function detail(a){
+  const inst=installed[a.id];
+  return `<button class="back" onclick="view=null;render()">${ic("bk")}</button>
+  <div class="dh">${icon(a)}<div><h1>${esc(a.name)}</h1><div class="dv">${esc(a.dev||"Développeur")}</div></div></div>
+  <div class="stats"><div><b>${esc(a.size||"—")}</b><span>Taille</span></div><div><b>v${esc(a.version||"1.0")}</b><span>Version</span></div><div><b>${esc(a.cat||"—")}</b><span>Catégorie</span></div></div>
+  <div class="act"><div class="row" style="flex-wrap:nowrap"><button class="btn" id="ib" onclick="install('${a.id}')">${inst?"Réinstaller":"Installer"}</button>${inst?`<button class="btn out" style="width:auto" onclick="uninstall('${a.id}')">Désinstaller</button>`:""}</div><div class="bar"><i id="pg"></i></div>${a.fname?`<div class="about" style="padding:10px 0 0;font-size:12px">Installeur : ${esc(a.fname)}</div>`:""}</div>
+  ${a.shots?.length?`<div class="shots">${a.shots.map(s=>`<img src="${s}" alt="">`).join("")}</div>`:""}
+  <h2>À propos de cette appli${ic("arr")}</h2><div class="about">${esc(a.desc||"Pas de description.")}</div>
+  ${admin?`<div class="row" style="padding:20px 16px"><button class="btn tonal" onclick="editor('${a.id}')">Modifier</button><button class="btn red" onclick="if(confirm('Supprimer ?'))delApp('${a.id}')">Supprimer</button></div>`:""}`
+}
+
+// ---- installation (téléchargement réel du .exe depuis le serveur) ----
+async function install(id){
+  const a=apps.find(x=>x.id===id);
+  if(!a.fname){if(a.url)window.open(a.url,"_blank");else toast("Aucun fichier d'installation");return}
+  const b=$("#ib"),p=$("#pg"),bar=p.parentNode;bar.style.display="block";p.style.width="0";b.disabled=true;b.textContent="Téléchargement…";
+  const reset=()=>{b.disabled=false;b.textContent=installed[id]?"Réinstaller":"Installer";bar.style.display="none"};
+  const url="/download/"+id;let done=false;
+  try{
+    if(window.showSaveFilePicker){
+      try{
+        const h=await showSaveFilePicker({suggestedName:a.fname});
+        const r=await fetch(url);if(!r.ok)throw new Error("dl");
+        const total=+r.headers.get("Content-Length")||a.bytes||0;let got=0;
+        const w=await h.createWritable();
+        await r.body.pipeThrough(new TransformStream({transform(c,ctl){got+=c.length;if(total)p.style.width=(got/total*100)+"%";ctl.enqueue(c)}})).pipeTo(w);
+        done=true;
+      }catch(e){if(e&&e.name==="AbortError")return reset()}
+    }
+    if(!done){p.style.width="100%";const l=document.createElement("a");l.href=url;l.download=a.fname;document.body.append(l);l.click();l.remove()}
+    installed[id]=1;lsSet("installed",installed);
+    toast("✓ "+a.fname+" téléchargé : lance-le pour installer");setTimeout(()=>{apps.find(x=>x.id===id).downloads++;render()},800)
+  }catch(e){toast("Échec du téléchargement");reset()}
+}
+function uninstall(id){delete installed[id];lsSet("installed",installed);toast("Retirée de ta liste");render()}
+// ---- admin ----
+function login(){return `<h2 style="margin-top:20px">Connexion admin</h2><div style="padding:0 16px"><label>Identifiant</label><input class="in" id="lu" autocomplete="username"><label>Mot de passe</label><input class="in" id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"><div style="margin-top:18px"><button class="btn" onclick="doLogin()">Se connecter</button></div></div>`}
+async function doLogin(){try{await api("POST","/api/login",{user:$("#lu").value,password:$("#lp").value});admin=true;render()}catch(e){toast(e.message)}}
+async function doLogout(){await api("POST","/api/logout");admin=false;tab="home";render()}
+function adminPanel(){return `<h2 style="margin-top:20px">Console admin<button class="pill" onclick="doLogout()">Déconnexion</button></h2>
+${apps.length?apps.map(a=>`<div class="rowi" onclick="editor('${a.id}')">${icon(a)}<div class="m"><div class="t">${esc(a.name)}</div><div class="s">${esc(a.cat||"")} · v${esc(a.version||"")} · ${a.downloads||0} téléch.</div></div><button class="pill" style="color:#b3261e" onclick="event.stopPropagation();delApp('${a.id}')">Suppr.</button></div>`).join(""):`<div class="empty">Aucune appli. Ajoute la première !</div>`}
+<button class="fab" onclick="editor()">${ic("add")}Ajouter</button>`}
+async function delApp(id){if(!confirm("Supprimer cette appli et son fichier ?"))return;try{await api("DELETE","/api/apps/"+id);view=null;await load()}catch(e){toast(e.message)}}
+function prev(i){const f=i.files[0];if(f)$("#pv").innerHTML=`<img src="${URL.createObjectURL(f)}">`}
+function editor(id){
+  edit=id?apps.find(a=>a.id===id):null;const a=edit||{cat:"Outils",version:"1.0"};
+  const s=document.createElement("div");s.className="sheet";s.id="sheet";
+  s.innerHTML=`<div><div class="hd"></div><h2 style="margin-top:0">${edit?"Modifier":"Nouvelle"} appli</h2><form id="ef" onsubmit="return false">
+  <div class="row"><div class="ico" id="pv" style="width:72px;height:72px;border-radius:20px">${a.icon?`<img src="${a.icon}">`:"+"}</div><div style="flex:1"><label style="margin:0">Icône</label><input type="file" name="icon" accept="image/*" onchange="prev(this)"></div></div>
+  <label>Nom</label><input class="in" name="name" value="${esc(a.name)}">
+  <label>Développeur</label><input class="in" name="dev" value="${esc(a.dev)}">
+  <div class="row"><div style="flex:1"><label>Catégorie</label><select class="in" name="cat">${CATS.slice(1).map(c=>`<option ${c===a.cat?"selected":""}>${c}</option>`).join("")}</select></div><div style="flex:1"><label>Version</label><input class="in" name="version" value="${esc(a.version)}"></div></div>
+  <label>Fichier d'installation (.exe, .msi, .zip… max 500 Mo)</label><input type="file" name="installer"><div style="font-size:13px;color:var(--on2);margin-top:4px">${a.fname?"Actuel : "+esc(a.fname)+" ("+esc(a.size)+")":""}</div>
+  <label>Lien externe (optionnel)</label><input class="in" name="url" placeholder="https://…" value="${esc(a.url)}">
+  <label>Description</label><textarea class="in" name="desc" rows="5">${esc(a.desc)}</textarea>
+  <label>Captures d'écran (max 4${a.shots?.length?", remplace les actuelles":""})</label><input type="file" name="shots" accept="image/*" multiple>
+  <div class="row" style="margin-top:22px;justify-content:flex-end"><button class="btn out" onclick="$('#sheet').remove()">Annuler</button><button class="btn" id="pb" onclick="submitApp()">Publier</button></div></form></div>`;
+  $(".phone").append(s)
+}
+function submitApp(){
+  const f=new FormData($("#ef"));if(!f.get("name").trim())return toast("Nom requis");
+  if(f.getAll("shots").filter(x=>x.size).length>4)return toast("4 captures maximum");
+  const x=new XMLHttpRequest(),b=$("#pb");x.open(edit?"PUT":"POST",edit?"/api/apps/"+edit.id:"/api/apps");x.setRequestHeader("X-Requested-With","XMLHttpRequest");
+  x.upload.onprogress=e=>{if(e.lengthComputable)b.textContent="Envoi "+Math.round(e.loaded/e.total*100)+" %"};
+  x.onload=async()=>{if(x.status<300){$("#sheet").remove();toast("✓ Appli publiée");await load()}else{let m="Erreur";try{m=JSON.parse(x.responseText).error}catch(e){}toast(m);b.disabled=false;b.textContent="Publier"}};
+  x.onerror=()=>{toast("Erreur réseau");b.disabled=false;b.textContent="Publier"};
+  b.disabled=true;b.textContent="Envoi…";x.send(f)
+}
+(async()=>{try{admin=(await api("GET","/api/me")).admin}catch(e){}try{await load()}catch(e){render();toast("Serveur injoignable")}})();
+</script>
+</body>
+</html>
